@@ -52,8 +52,3 @@
     Cache-Control = "public, max-age=2592000"
     Content-Type = "image/svg+xml"
 
-# Compression
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Encoding = "gzip"
