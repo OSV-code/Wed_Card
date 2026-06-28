@@ -1,0 +1,692 @@
+/* ============================================
+   GLOBAL STYLES & VARIABLES
+   ============================================ */
+
+:root {
+    --maroon: #6B0F1A;
+    --gold: #d4af37;
+    --gold-light: #f3e5ab;
+    --ivory: #FDFBF7;
+    --sky-blue: #d8edf8;
+    --sky-blue-light: #eaf5fb;
+    --blush: #f2d1c9;
+    --sage: #4a7c59;
+    
+    --serif-display: 'Cormorant Garamond', serif;
+    --serif-body: 'Mukta', sans-serif;
+    --script-font: 'Great Vibes', cursive;
+    
+    --transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-fast: all 0.3s ease-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--serif-body);
+}
+
+body {
+    background-color: var(--ivory);
+    color: var(--maroon);
+    line-height: 1.6;
+    overflow-x: hidden;
+    overflow-y: hidden; /* Hidden initially until doors open */
+    background-image: radial-gradient(circle at top left, rgba(212, 175, 55, 0.1), transparent 40%),
+                      radial-gradient(circle at bottom right, rgba(242, 209, 201, 0.2), transparent 40%);
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    position: relative;
+    font-family: var(--serif-body);
+}
+
+/* ============================================
+   ROYAL DOOR LANDING SECTION
+   ============================================ */
+
+.door-landing {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; 
+    perspective: 1500px; /* Crucial for 3D door swing effect */
+    transition: opacity 1s ease 1.5s, visibility 1s ease 1.5s; /* Fades out after doors open */
+}
+
+.door-frame {
+    position: relative;
+    width: 350px;
+    height: 550px;
+    background: var(--sky-blue); 
+    border-radius: 175px 175px 0 0; /* Arched Palace Frame */
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.4), inset 0 0 30px rgba(0,0,0,0.5);
+    border: 8px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    display: flex; /* Forces doors to be side-by-side */
+    flex-direction: row;
+    transform-style: preserve-3d;
+}
+
+.door {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #4A0E17 0%, var(--maroon) 100%);
+    transition: transform 2s cubic-bezier(0.64, 0.04, 0.35, 1); /* Smooth swing animation */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+}
+
+/* Left Door Hinge */
+.door-left {
+    transform-origin: left center;
+    border-radius: 175px 0 0 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Right Door Hinge */
+.door-right {
+    transform-origin: right center;
+    border-radius: 0 175px 0 0;
+    border-left: 2px solid rgba(0,0,0,0.4);
+}
+
+/* Pattern inside doors */
+.door-panel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.door-decoration {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.door-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    pointer-events: none; /* Lets clicks pass through to doors */
+    width: 100%;
+    transition: opacity 0.5s ease;
+}
+
+.door-text-script {
+    font-family: var(--serif-display);
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.door-text {
+    font-family: var(--serif-display);
+    font-size: 20px;
+    color: var(--ivory);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: rgba(107, 15, 26, 0.9);
+    padding: 12px 24px;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+    animation: pulse 2s infinite;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* --- ANIMATION CLASSES ADDED VIA JAVASCRIPT --- */
+.door-landing.opened .door-left {
+    transform: rotateY(-110deg);
+}
+
+.door-landing.opened .door-right {
+    transform: rotateY(110deg);
+}
+
+.door-landing.opened .door-text-container {
+    opacity: 0;
+}
+
+.door-landing.hidden-completely {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+    min-height: 120vh;
+    background: linear-gradient(to bottom, var(--sky-blue), var(--sky-blue-light));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.peacock-arch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-text {
+    background: rgba(253, 251, 247, 0.85);
+    padding: 60px 80px;
+    border-radius: 200px 200px 20px 20px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 20px 50px rgba(107, 15, 26, 0.1);
+    max-width: 600px;
+    backdrop-filter: blur(8px);
+}
+
+.names-title {
+    font-family: var(--serif-display);
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--maroon);
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+}
+
+.names-subtitle {
+    font-size: 18px;
+    color: var(--maroon);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.invitation-text {
+    font-size: 16px;
+    color: var(--sage);
+    margin: 8px 0;
+    font-family: var(--serif-body);
+    letter-spacing: 1px;
+}
+
+.bride-groom {
+    font-family: var(--script-font);
+    font-size: 52px;
+    color: var(--gold);
+    margin: 5px 0;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.bride-groom-ampersand {
+    font-size: 32px; 
+    font-family: var(--serif-display); 
+    color: var(--sage); 
+    margin: 0;
+}
+
+/* ============================================
+   SAVE THE DATE SECTION
+   ============================================ */
+
+.save-date {
+    background: linear-gradient(135deg, var(--ivory) 0%, var(--blush) 100%);
+    min-height: 100vh;
+}
+
+.save-date-container {
+    text-align: center;
+}
+
+.save-date h2 {
+    font-family: var(--serif-display);
+    font-size: 48px;
+    color: var(--maroon);
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.scratch-card {
+    width: 100%;
+    max-width: 450px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--gold);
+    touch-action: none;
+}
+
+.scratch-content {
+    width: 100%;
+    height: 100%;
+    background: var(--sky-blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.date-info {
+    color: var(--maroon);
+    text-align: center;
+}
+
+.date-label {
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--sage);
+    font-weight: 600;
+}
+
+.date-value {
+    font-family: var(--serif-display);
+    font-size: 46px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--maroon);
+}
+
+.venue-label {
+    font-size: 16px;
+    color: var(--sage);
+    font-family: var(--serif-body);
+}
+
+.scratch-layer {
+    background: linear-gradient(45deg, var(--gold), #ffdf73);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: crosshair;
+}
+
+.scratch-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: var(--maroon);
+    letter-spacing: 2px;
+    z-index: 3;
+    font-family: var(--serif-body);
+    font-weight: 600;
+    pointer-events: none;
+}
+
+/* ============================================
+   COUNTDOWN SECTION
+   ============================================ */
+
+.countdown {
+    background: var(--sky-blue-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown h2 {
+    font-family: var(--serif-display);
+    font-size: 48px;
+    color: var(--maroon);
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 30px;
+    max-width: 700px;
+    width: 100%;
+}
+
+.countdown-box {
+    background: rgba(253, 251, 247, 0.9);
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid var(--gold);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.countdown-value {
+    display: block;
+    font-family: var(--serif-display);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--sage);
+    margin-bottom: 5px;
+}
+
+.countdown-label {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--maroon);
+    text-transform: uppercase;
+}
+
+/* ============================================
+   CEREMONY SECTIONS (Soft Watercolor Vibe)
+   ============================================ */
+
+.ceremony {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--sky-blue) 0%, #ffffff 100%);
+}
+
+.ceremony-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.ceremony-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 50px;
+    border-radius: 20px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.ceremony-header h2 {
+    font-family: var(--script-font);
+    font-size: 64px;
+    color: var(--sage); 
+    margin-bottom: 0px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.ceremony-subtitle {
+    font-size: 18px;
+    color: var(--maroon);
+    margin-bottom: 30px;
+    font-family: var(--serif-display);
+    letter-spacing: 1px;
+}
+
+.ceremony-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.4);
+    padding-top: 30px;
+}
+
+.detail-item h3 {
+    font-family: var(--serif-display);
+    font-size: 18px;
+    color: var(--maroon);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.detail-item p {
+    font-size: 16px;
+    color: var(--sage);
+    font-weight: 500;
+}
+
+/* Individual Ceremony Accents */
+.haldi .ceremony-header h2 { color: #d4a017; } 
+.sangeet .ceremony-header h2 { color: var(--maroon); }
+.lagna .ceremony-header h2 { color: var(--gold); }
+.reception .ceremony-header h2 { color: var(--sage); }
+
+/* ============================================
+   VENUE SECTION
+   ============================================ */
+
+.venue {
+    background: linear-gradient(135deg, var(--ivory) 0%, var(--blush) 100%);
+    padding: 80px 20px;
+    flex-direction: column;
+}
+
+.venue h2 {
+    font-family: var(--serif-display);
+    font-size: 48px;
+    color: var(--maroon);
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+}
+
+.venue-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+}
+
+.venue-address {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.venue-address p {
+    font-size: 18px;
+    color: var(--sage);
+    line-height: 1.8;
+    font-family: var(--serif-display);
+}
+
+.venue-map {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border: 2px solid var(--gold);
+}
+
+.venue-map svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.get-directions-btn {
+    grid-column: 1 / -1;
+    background: var(--gold);
+    color: var(--ivory);
+    padding: 16px 50px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--serif-display);
+    letter-spacing: 2px;
+    font-weight: 600;
+    transition: var(--transition-fast);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    text-transform: uppercase;
+    margin: 0 auto;
+    display: block;
+}
+
+.get-directions-btn:hover {
+    transform: translateY(-3px);
+    background: #b5952f;
+    box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* ============================================
+   AUDIO PLAYER
+   ============================================ */
+
+.audio-player {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.audio-toggle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 2px solid var(--gold);
+    color: var(--maroon);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: var(--transition-fast);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.audio-toggle:hover {
+    transform: scale(1.05);
+    background: var(--gold-light);
+}
+
+.audio-toggle.muted {
+    background: #e0e0e0;
+    border-color: #999;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    background: var(--maroon);
+    color: var(--gold-light);
+    text-align: center;
+    padding: 60px 20px;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 5px solid var(--gold);
+}
+
+.footer p {
+    font-size: 16px;
+    margin: 10px 0;
+    font-family: var(--serif-body);
+}
+
+.footer-names {
+    font-family: var(--script-font);
+    font-size: 48px;
+    color: var(--gold);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.footer-date {
+    font-size: 16px;
+    color: var(--ivory);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: var(--serif-display);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .door-frame { width: 300px; height: 500px; }
+    .hero-text { padding: 40px; }
+    .names-title { font-size: 52px; }
+    .bride-groom { font-size: 42px; }
+    .ceremony-content { padding: 40px; }
+    .venue-content { grid-template-columns: 1fr; gap: 30px; }
+}
+
+@media (max-width: 768px) {
+    section { padding: 40px 15px; }
+    .door-frame { width: 260px; height: 420px; }
+    .hero-text { padding: 40px 20px; border-radius: 150px 150px 15px 15px; }
+    .names-title { font-size: 42px; }
+    .bride-groom { font-size: 36px; }
+    .ceremony-header h2 { font-size: 48px; }
+    .countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .footer-names { font-size: 38px; }
+}
+
+@media (max-width: 480px) {
+    .door-frame { width: 220px; height: 350px; }
+    .names-title { font-size: 32px; }
+    .bride-groom { font-size: 30px; }
+    .scratch-card { height: 220px; }
+    .date-value { font-size: 32px; }
+    .countdown-grid { grid-template-columns: 1fr; }
+    .ceremony-header h2 { font-size: 42px; }
+    .ceremony-content { padding: 30px 20px; }
+    .venue-address p { font-size: 16px; }
+    .get-directions-btn { padding: 12px 30px; font-size: 14px; }
+    .audio-toggle { width: 45px; height: 45px; font-size: 18px; }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Kabir & Diksha Wedding Invitation",
+  "short_name": "Wedding",
+  "description": "Join us for the celebration of love and marriage",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6B0F1A",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%236B0F1A' width='192' height='192'/><text x='96' y='100' font-size='80' text-anchor='middle' fill='%23C9A227' font-family='serif' font-weight='bold'>💍</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["lifestyle"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23FBF3E3' width='540' height='720'/><text x='270' y='360' font-size='48' text-anchor='middle' fill='%236B0F1A' font-family='serif'>Wedding Invitation</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "orientation": "portrait-primary"
+}

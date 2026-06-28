@@ -1,0 +1,36 @@
+{
+  "name": "kabir-diksha-wedding-invitation",
+  "version": "1.0.0",
+  "description": "A beautiful, single-page wedding invitation website for Kabir & Diksha",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000 || python -m SimpleHTTPServer 8000 || npx http-server",
+    "serve": "python -m http.server 8000",
+    "dev": "npx http-server -c-1",
+    "build": "echo 'No build step required for this project'",
+    "test": "echo 'No tests configured'",
+    "open": "open http://localhost:8000 || start http://localhost:8000"
+  },
+  "keywords": [
+    "wedding",
+    "invitation",
+    "responsive",
+    "single-page",
+    "interactive",
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+  ],
+  "author": "Kabir & Diksha",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/kabir-diksha-wedding.git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
