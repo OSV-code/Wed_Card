@@ -1,4 +1,4 @@
-# Kabir & Diksha - Wedding Invitation Website
+Wedding Invitation Website
 
 A beautiful, single-page wedding invitation website featuring elegant design, animations, and interactive elements.
 
@@ -82,7 +82,7 @@ Replace the placeholder audio file with your wedding music:
 ### Update Wedding Details
 
 **In `index.html`, update:**
-- Names: Search for "Kabir & Diksha" and replace with couple names
+- Names: Search for "..." and replace with couple names
 - Dates: Update all dates (currently set to January 2027)
 - Venue: Update "Amaara Farms, New Delhi" with your venue
 - Address: Update the full venue address in the "Where We Celebrate" section
@@ -173,10 +173,6 @@ Each ceremony section has an SVG scene that can be customized:
 - **GitHub Pages**: Push to repository
 - **Any Web Host**: Upload files via FTP
 
-### Domain Setup
-- Purchase a custom domain (e.g., kabirAndDiksha.com)
-- Point it to your hosting provider
-- Update DNS settings accordingly
 
 ## Troubleshooting
 
@@ -202,7 +198,7 @@ Each ceremony section has an SVG scene that can be customized:
 
 ## Credits
 
-- Designed with ❤️ for Kabir & Diksha's wedding
+- Designed with ❤️ wedding
 - Built with HTML5, CSS3, and JavaScript
 - Uses SVG for illustrations
 - Responsive design for all devices
